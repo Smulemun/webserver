@@ -1,0 +1,12 @@
+﻿{% extends "base.html" %}
+ 
+{% block content %}
+<form method="post">
+	<input type="text" value={{title}} id="title" name="title">
+	</br>
+	<input type="text" value={{content}} id="content" name="content">
+	</br>
+	<input type="text" value={{date}} id="date" name="date">
+	<button type="submit">submit</button>
+</form>
+{% endblock %}

@@ -1,0 +1,28 @@
+﻿{% extends "base.html" %}
+ 
+{% block content %}
+	{% if username == "admin" %}
+    		<a href="/users">для админов</a>
+	{% endif %}
+    	{% if session['block'] != "blocked" %}
+		<a href="/add_task">Добавить задачу</a>
+	{% endif %}
+	{% if session['block'] == "blocked" %}
+		<h1>ВАС ЗАБАНИЛИ</h1>
+	{% endif %}
+{% for item in news %}
+    <div class="alert alert-dark" role="alert">
+        <i><a href="/news/{{item[0]}}"><h2>{{item[1]}}</h2></a></i>
+	<a>Дата: {{item[3]}}</a>
+	</br>
+	<a>Автор: </a><a href="/{{item[4]}}">{{users[item[4]][0]}}</a>
+	</br>
+	{% if username == users[item[4]][1] %}
+		{% if session['block'] != "blocked" %}
+			<a href="/edit_news/{{item[0]}}">Редактировать задачу</a>
+		{% endif %}
+        <a href="/delete_news/{{item[0]}}">Удалить задачу</a>
+    	{% endif %}
+    </div>
+{% endfor %}
+{% endblock %}

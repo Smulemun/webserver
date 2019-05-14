@@ -1,0 +1,15 @@
+﻿{% extends "base.html" %}
+ 
+{% block content %}
+{% for item in news %}
+    <div>
+	<a>{{item[1]}} {{item[4]}}    </a>
+	{% if item[4] != "blocked" %}
+		<a href='/block/{{item[0]}}'>block</a>
+	{% endif %}
+	{% if item[4] == "blocked" %}
+		<a href='/unblock/{{item[0]}}'>unblock</a>
+	{% endif %}
+    </div>
+{% endfor %}
+{% endblock %}
